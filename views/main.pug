@@ -1,0 +1,20 @@
+extends templates/head
+block content
+  .container.pt-4
+    h4.my-4.text-warning Add user
+    form.form(action='/users', method='POST')
+      div
+        label.text-secondary Name
+          input.form-control(type='text', name='username')
+        input(type='hidden', value='post', name='method')
+      button.btn.btn-success Submit
+    h4.my-4.text-warning Add product
+    form.form(action='/products', method='POST')
+      div
+        label.text-secondary Title
+          input.form-control(type='text', name='title')
+      div
+        label.text-secondary Price
+          input.form-control(type='text', name='price')
+      input(type='hidden', value='post', name='method')
+      button.btn.btn-success Submit

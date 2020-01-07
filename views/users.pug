@@ -1,0 +1,30 @@
+extends templates/head
+block content
+  h4.text-dark
+    a(href='/') main
+    span  | 
+    a(href='/users') users
+    span  | 
+    a(href='/products') products
+  if users.length > 0
+    table.table.table-dark
+      thead
+        tr
+          th Пользователи
+          th Бабло
+      tbody
+        each user in users
+          tr
+            td #{user.name}
+            td 
+              span #{user.amount}
+              form(style='margin-left: 20px; display: inline', action='/users', method='POST')
+                input(type='hidden', value=user.id, name='id')
+                input(type='hidden', value='put', name='method')
+                button EDIT
+              form(style='margin-left: 20px; display: inline', action='/users', method='POST')
+                input(type='hidden', value=user.id, name='id')
+                input(type='hidden', value='delete', name='method')
+                button DEL
+  else
+    h3 No users found

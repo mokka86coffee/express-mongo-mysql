@@ -1,0 +1,1 @@
+module.exports = (template, props) => (req, res, next) => res.render(template, props);

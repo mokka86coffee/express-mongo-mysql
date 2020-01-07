@@ -1,0 +1,26 @@
+extends templates/head
+block content
+  if products.length > 0
+    table.table.table-dark
+      thead
+        tr
+          th.text-center.text-dark Продукты
+          th.text-center.text-dark Цена
+      tbody
+        each product in products
+          tr
+            td.text-center
+              a.text-success.text-uppercase(href=`product/${product._id}`) #{product.title}
+            td.text-center
+              span.text-warning(style='margin-left: 10px') #{product.price}
+            td.text-center
+              form(style='margin-left: 20px; display: inline', action='/users', method='POST')
+                input(type='hidden', value=product._id, name='id')
+                input(type='hidden', value='put', name='method')
+                button.btn.btn-warning EDIT
+              form(style='margin-left: 20px; display: inline', action='/users', method='POST')
+                input(type='hidden', value=product._id, name='id')
+                input(type='hidden', value='delete', name='method')
+                button.btn.btn-danger DEL
+  else
+    h3 No products found
