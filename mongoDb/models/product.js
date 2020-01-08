@@ -10,7 +10,7 @@ module.exports = class Product {
     };
   }
 
-  static getAll() {
+  static fetchAll() {
     return DB.connection
       .collection(COLLECTION)
       .find()
@@ -18,22 +18,30 @@ module.exports = class Product {
       .catch(log);
   }
 
-  modify = (callback) => {
-    const { id } = this.product;
+  static deleteOne(id, callback) {
+    return DB.connection
+      .collection(COLLECTION)
+      .deleteOne({ _id: MongoObjectId(id) })
+      .then(callback)
+      .catch(log);
+  }
+
+  modify = (redirect) => {
+    const { id, ...restInfo } = this.product;
     const operation = DB.connection.collection(COLLECTION);
     if (id) {
       operation
         .updateOne(
           { _id: MongoObjectId(id) },
-          { $set: this.product }
+          { $set: restInfo }
         )
-        .then(callback)
+        .then(redirect)
         .catch(log);
         ;
     } else {
       operation
-        .insertOne(this.product)
-        .then(callback)
+        .insertOne(restInfo)
+        .then(redirect)
         .catch(log);
     }
   }

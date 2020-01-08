@@ -14,11 +14,9 @@ block content
             td.text-center
               span.text-warning(style='margin-left: 10px') #{product.price}
             td.text-center
-              form(style='margin-left: 20px; display: inline', action='/users', method='POST')
-                input(type='hidden', value=product._id, name='id')
-                input(type='hidden', value='put', name='method')
+              a.text-success.text-uppercase(href=`product/${product._id}`)
                 button.btn.btn-warning EDIT
-              form(style='margin-left: 20px; display: inline', action='/users', method='POST')
+              form(style='margin-left: 20px; display: inline', action='/products', method='POST')
                 input(type='hidden', value=product._id, name='id')
                 input(type='hidden', value='delete', name='method')
                 button.btn.btn-danger DEL

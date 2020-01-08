@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const renderMiddleware = require('../views/renderMiddleware');
 
-const MainPage = renderMiddleware('main', { pageTitle: 'Add user' });
+const MainPage = renderMiddleware('main', { pageTitle: 'Main' });
 
 router
   .route('/')
